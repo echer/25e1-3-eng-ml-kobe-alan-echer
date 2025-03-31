@@ -31,3 +31,6 @@ attr = "25e1_3_eng_ml_kobe_alan_echer.__version__"
 [tool.setuptools.packages.find]
 where = [ "src",]
 namespaces = false
+
+[tool.kedro_telemetry]
+project_id = "85c2d413217d41e89e9e1e2b566885b1"
