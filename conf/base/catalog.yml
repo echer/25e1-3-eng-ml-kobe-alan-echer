@@ -2,3 +2,27 @@
 #
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+
+kobe_raw_dev@parquet:
+  type: pandas.ParquetDataset
+  filepath: data/01_raw/dataset_kobe_dev.parquet
+  
+kobe_raw_prod@parquet:
+  type: pandas.ParquetDataset
+  filepath: data/01_raw/dataset_kobe_prod.parquet
+
+kobe_intermediate_drop_columns:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/kobe_intermediate_drop_columns.parquet
+  
+kobe_intermediate_shot_made_flag_drop_na:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/kobe_intermediate_shot_made_flag_drop_na.parquet
+
+base_train:
+  type: pandas.ParquetDataset
+  filepath: data/processed/base_train.parquet
+
+base_test:
+  type: pandas.ParquetDataset
+  filepath: data/processed/base_test.parquet
