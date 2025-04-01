@@ -22,3 +22,6 @@ def kobe_raw_parquet_split_train_test(dataset):
 def kobe_intermediate_shot_made_flag_drop_na(dataset):
     dataset = dataset.dropna()
     return dataset
+
+def run_pycarret():
+    pass

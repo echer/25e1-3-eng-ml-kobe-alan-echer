@@ -20,17 +20,20 @@ def create_pipeline(**kwargs) -> Pipeline:
         node(
             nodes.kobe_intermediate_drop_columns,
             inputs=[getRawDataset()],
-            outputs='kobe_intermediate_drop_columns'
+            outputs='kobe_intermediate_drop_columns',
+            tags=['preprocessing'],
         ),
         node(
             nodes.kobe_intermediate_shot_made_flag_drop_na,
             inputs=['kobe_intermediate_drop_columns'],
             outputs='kobe_intermediate_shot_made_flag_drop_na',
+            tags=['preprocessing'],
         ),
         node(
             nodes.kobe_raw_parquet_split_train_test,
             inputs=['kobe_intermediate_shot_made_flag_drop_na'],
             outputs=['base_train','base_test'],
+            tags=['preprocessing'],
         ),
         
     ])
