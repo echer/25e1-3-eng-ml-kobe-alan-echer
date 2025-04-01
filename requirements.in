@@ -1,0 +1,5 @@
+ipython
+jupyterlab
+kedro
+notebook
+pycaret[models,mlops,tuners,parallel]
