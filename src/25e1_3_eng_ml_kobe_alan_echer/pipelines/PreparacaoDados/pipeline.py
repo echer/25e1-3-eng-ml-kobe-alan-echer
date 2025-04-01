@@ -18,27 +18,23 @@ def getRawDataset():
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline([
         node(
-            nodes.kobe_intermediate_drop_columns,
+            nodes.drop_columns,
             inputs=[getRawDataset()],
-            outputs='kobe_intermediate_drop_columns',
-            tags=['preprocessing'],
+            outputs='droped_columns',
         ),
         node(
-            nodes.kobe_intermediate_shot_made_flag_drop_na,
-            inputs=['kobe_intermediate_drop_columns'],
-            outputs='kobe_intermediate_shot_made_flag_drop_na',
-            tags=['preprocessing'],
+            nodes.drop_columns,
+            inputs=['droped_columns'],
+            outputs='droped_na',
         ),
         node(
-            nodes.kobe_raw_parquet_split_train_test,
-            inputs=['kobe_intermediate_shot_made_flag_drop_na'],
+            nodes.split_train_test,
+            inputs=['droped_na'],
             outputs=['base_train','base_test'],
-            tags=['preprocessing'],
         ),
         node(
-            nodes.train_model_pycarret,
+            nodes.train_model,
             inputs=['base_train'],
             outputs=['trained_model_1', 'trained_model_2'],
-            tags='model'
         ),
     ])
