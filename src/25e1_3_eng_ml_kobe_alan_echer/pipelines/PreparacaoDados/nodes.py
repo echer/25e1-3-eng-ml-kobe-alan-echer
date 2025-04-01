@@ -4,6 +4,7 @@ generated using Kedro 0.19.12
 """
 from sklearn.model_selection import train_test_split
 from kedro.config import OmegaConfigLoader 
+from pycaret.classification import *
 
 parameters = OmegaConfigLoader(conf_source=".")['parameters']
 
@@ -23,5 +24,8 @@ def kobe_intermediate_shot_made_flag_drop_na(dataset):
     dataset = dataset.dropna()
     return dataset
 
-def run_pycarret():
-    pass
+def train_model_pycarret(dataset):
+    experiment = ClassificationExperiment()
+    experiment.setup(data=dataset, target=parameters['y_column'], log_experiment='mlflow', experiment_name=parameters['mflow_experiment_name'], session_id=parameters['session_id'])
+    best = experiment.compare_models()
+    return best
