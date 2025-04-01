@@ -13,7 +13,7 @@ def isProduction():
     return parameters['is_production']
 
 def getRawDataset():
-    return 'kobe_raw_dev@parquet' if(not isProduction()) else 'kobe_raw_prod@parquet'
+    return 'dataset_kobe_dev' if(not isProduction()) else 'dataset_kobe_prod'
 
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline([
@@ -23,7 +23,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             outputs='droped_columns',
         ),
         node(
-            nodes.drop_columns,
+            nodes.drop_na,
             inputs=['droped_columns'],
             outputs='droped_na',
         ),

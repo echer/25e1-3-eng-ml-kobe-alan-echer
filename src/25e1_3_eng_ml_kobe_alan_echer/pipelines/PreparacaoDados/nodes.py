@@ -5,7 +5,7 @@ generated using Kedro 0.19.12
 from sklearn.model_selection import train_test_split
 from kedro.config import OmegaConfigLoader 
 from pycaret.classification import *
-from sklearn.ensemble import AdaBoostClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 
 parameters = OmegaConfigLoader(conf_source=".")['parameters']
@@ -39,7 +39,7 @@ def train_model(dataset):
     model_2 = None
 
     for model in best:
-        if(isinstance(model, AdaBoostClassifier)):
+        if(isinstance(model, LogisticRegression)):
             model_1 = model
         if(isinstance(model, DecisionTreeClassifier)):
             model_2 = model
