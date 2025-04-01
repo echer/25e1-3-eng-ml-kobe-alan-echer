@@ -10,11 +10,15 @@ from sklearn.tree import DecisionTreeClassifier
 
 parameters = OmegaConfigLoader(conf_source=".")['parameters']
 
-def kobe_intermediate_drop_columns(dataset):
+def drop_columns(dataset):
     dataset = dataset.drop(columns=['action_type','combined_shot_type','game_event_id','game_id','loc_x','loc_y','season','seconds_remaining','shot_type','shot_zone_area','shot_zone_basic','shot_zone_range','team_id','team_name','game_date','matchup','opponent','shot_id'])
     return dataset
 
-def kobe_raw_parquet_split_train_test(dataset):
+def drop_na(dataset):
+    dataset = dataset.dropna()
+    return dataset
+
+def split_train_test(dataset):
     train, test = train_test_split(
         dataset, 
         test_size=parameters['train_test_split_ratio'], 
@@ -22,11 +26,7 @@ def kobe_raw_parquet_split_train_test(dataset):
     ) 
     return train, test
 
-def kobe_intermediate_shot_made_flag_drop_na(dataset):
-    dataset = dataset.dropna()
-    return dataset
-
-def train_model_pycarret(dataset):
+def train_model(dataset):
     experiment = ClassificationExperiment()
     experiment.setup(
         data=dataset,
