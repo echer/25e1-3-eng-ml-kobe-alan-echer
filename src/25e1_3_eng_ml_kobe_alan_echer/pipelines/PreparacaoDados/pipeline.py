@@ -38,7 +38,7 @@ def create_pipeline(**kwargs) -> Pipeline:
         node(
             nodes.train_model_pycarret,
             inputs=['base_train'],
-            outputs='trained_model',
+            outputs=['trained_model_1', 'trained_model_2'],
             tags='model'
         ),
     ])

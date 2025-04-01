@@ -26,6 +26,11 @@ def kobe_intermediate_shot_made_flag_drop_na(dataset):
 
 def train_model_pycarret(dataset):
     experiment = ClassificationExperiment()
-    experiment.setup(data=dataset, target=parameters['y_column'], log_experiment='mlflow', experiment_name=parameters['mflow_experiment_name'], session_id=parameters['session_id'])
-    best = experiment.compare_models()
-    return best
+    experiment.setup(
+        data=dataset,
+        target=parameters['y_column'],
+        log_experiment='mlflow', 
+        experiment_name=parameters['mflow_experiment_name'], 
+        session_id=parameters['session_id'])
+    best = experiment.compare_models(n_select=2)
+    return best[0], best[1]
