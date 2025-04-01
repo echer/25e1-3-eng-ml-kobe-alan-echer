@@ -26,3 +26,7 @@ base_train:
 base_test:
   type: pandas.ParquetDataset
   filepath: data/processed/base_test.parquet
+
+trained_model:
+  type: pickle.PickleDataset
+  filepath: data/06_models/trained_model.pickle
