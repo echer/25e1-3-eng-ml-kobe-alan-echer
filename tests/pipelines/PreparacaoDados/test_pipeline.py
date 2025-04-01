@@ -1,5 +1,5 @@
 """
-This is a boilerplate test file for pipeline 'acertos_kobe'
+This is a boilerplate test file for pipeline 'PreparacaoDados'
 generated using Kedro 0.19.12.
 Please add your pipeline tests here.
 
