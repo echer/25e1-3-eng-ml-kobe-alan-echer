@@ -1,8 +1,7 @@
 """
-This is a boilerplate pipeline 'acertos_kobe'
+This is a boilerplate pipeline 'PreparacaoDados'
 generated using Kedro 0.19.12
 """
-
 from sklearn.model_selection import train_test_split
 from kedro.config import OmegaConfigLoader 
 
@@ -21,5 +20,5 @@ def kobe_raw_parquet_split_train_test(dataset):
     return train, test
 
 def kobe_intermediate_shot_made_flag_drop_na(dataset):
-    #dataset.dropna()
-    pass
+    dataset = dataset.dropna()
+    return dataset
