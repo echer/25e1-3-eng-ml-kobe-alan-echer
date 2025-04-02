@@ -18,18 +18,13 @@ def getRawDataset():
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline([
         node(
-            nodes.drop_columns,
+            nodes.drop_columns_drop_na,
             inputs=[getRawDataset()],
-            outputs='droped_columns',
-        ),
-        node(
-            nodes.drop_na,
-            inputs=['droped_columns'],
-            outputs='droped_na',
+            outputs='data_filtered',
         ),
         node(
             nodes.split_train_test,
-            inputs=['droped_na'],
+            inputs=['data_filtered'],
             outputs=['base_train','base_test'],
         ),
         node(
