@@ -27,9 +27,4 @@ def create_pipeline(**kwargs) -> Pipeline:
             inputs=['data_filtered'],
             outputs=['base_train','base_test'],
         ),
-        node(
-            nodes.train_model,
-            inputs=['base_train'],
-            outputs=['trained_model_1', 'trained_model_2'],
-        ),
     ])
