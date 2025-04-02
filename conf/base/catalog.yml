@@ -13,15 +13,15 @@ dataset_kobe_prod:
 
 data_filtered:
   type: pandas.ParquetDataset
-  filepath: data/02_intermediate/data_filtered.parquet
+  filepath: data/04_feature/data_filtered.parquet
   
 base_train:
   type: pandas.ParquetDataset
-  filepath: data/04_feature/base_train.parquet
+  filepath: data/05_model_input/base_train.parquet
 
 base_test:
   type: pandas.ParquetDataset
-  filepath: data/04_feature/base_test.parquet
+  filepath: data/05_model_input/base_test.parquet
 
 trained_model_1:
   type: pickle.PickleDataset

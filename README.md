@@ -102,6 +102,8 @@ To automatically strip out all output cell contents before committing to `git`, 
 
 ## Trabalho Engenharia de Machine Learning - Alan Echer ##
 
+# (Link do repositorio)[https://github.com/echer/25e1-3-eng-ml-kobe-alan-echer.git] #
+
 # Apontar os artefatos criados e sua composição detalhada #
 # Se for dataset é importante falar as colunas descrição e os tipos de dados de cada coluna #
 # Se for modelo descrever o modelo #
@@ -123,26 +125,25 @@ To automatically strip out all output cell contents before committing to `git`, 
 # Artefato 4 (base_test) - Dataset contendo 80% dos dados do dataset# 'data_filtered' estratificando os dados baseado na coluna target shot_made_flag, o dataset segue a mesma estrutura do artefato 2. #
 
 
-
 diagrama: https://excalidraw.com/#room=cd3f01d539bfa6994444,bzKX0k0Hkq-9AGS60N83-Q
 
 O aluno categorizou corretamente os dados?	
 
-O aluno integrou a leitura dos dados corretamente à sua solução?	
+# OK - O aluno integrou a leitura dos dados corretamente à sua solução? #
 
 O aluno aplicou o modelo em produção (servindo como API ou como solução embarcada)?	
 
-O aluno indicou se o modelo é aderente a nova base de dados?	
+O aluno indicou se o modelo é aderente a nova base de dados?
 
 O aluno criou um repositório git com a estrutura de projeto baseado no Framework TDSP da Microsoft?	
 
 O aluno criou um diagrama que mostra todas as etapas necessárias para a criação de modelos?	
 
-O aluno treinou um modelo de regressão usando PyCaret e MLflow?	
+# OK - O aluno treinou um modelo de regressão usando PyCaret e MLflow?	#
 
 O aluno calculou o Log Loss para o modelo de regressão e registrou no mlflow?	
 
-O aluno treinou um modelo de árvore de decisao usando PyCaret e MLflow?	
+# OK - O aluno treinou um modelo de árvore de decisao usando PyCaret e MLflow?	#
 
 O aluno calculou o Log Loss e F1 Score para o modelo de árvore de decisão e registrou no mlflow?	
 
@@ -160,9 +161,9 @@ O aluno indicou quais as dimensões para a base preprocessada?
 
 O aluno criou arquivos para cada fase do processamento e os armazenou nas pastas indicadas?	
 
-O aluno separou em duas bases, uma para treino e outra para teste?	
+# OK - O aluno separou em duas bases, uma para treino e outra para teste #	
 
-O aluno criou um pipeline chamado "Treinamento" no MlFlow?	
+# OK - O aluno criou um pipeline chamado "Treinamento" no MlFlow?	#
 
 O aluno identificou a diferença entre a base de desenvolvimento e produção?	
 
