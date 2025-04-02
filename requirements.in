@@ -1,5 +1,9 @@
-ipython
-jupyterlab
+ipython>=8.10
+jupyterlab>=3.0
+mlflow<2.15
 kedro
 notebook
-pycaret[models,mlops,tuners,parallel]
+kedro-datasets
+pycaret[models,mlops,tuners]
+scikit-optimize
+kedro-mlflow
