@@ -107,6 +107,23 @@ To automatically strip out all output cell contents before committing to `git`, 
 # Se for modelo descrever o modelo #
 # Descrever a separacao de dados treino e teste #
 
+# Artefato 1 (dataset_kobe{dev/prod}.parquet) - Dataset original dev e prod guardadas na pasta data/01_raw/, o dataset contém os registros dos arremessos do kobe bryant e um indicador para saber se acertou ou não. #
+
+# Artefato 2 (data_filtered.parquet) - Dataset com dados filtrados, foram removidos dados nulos e algumas colunas dexando apenas as colunas abaixo: 
+- lat - Latitude do jogador kobe
+- lon - Longitude do jogador kobe
+- minutes_remaining - Minutos restantes para o término da partida
+- period - Periodo ou tempo da partida atual
+- playoffs - Jogos de eliminatória
+- shot_distance - Distancia do arremesso
+- shot_made_flag - Indicador se fez acertou ou não o arremesso#
+
+# Artefato 3 (base_train) - Dataset contendo 80% dos dados do dataset 'data_filtered' estratificando os dados baseado na coluna target shot_made_flag, o dataset segue a mesma estrutura do artefato 2.#
+
+# Artefato 4 (base_test) - Dataset contendo 80% dos dados do dataset# 'data_filtered' estratificando os dados baseado na coluna target shot_made_flag, o dataset segue a mesma estrutura do artefato 2. #
+
+
+
 diagrama: https://excalidraw.com/#room=cd3f01d539bfa6994444,bzKX0k0Hkq-9AGS60N83-Q
 
 O aluno categorizou corretamente os dados?	
