@@ -11,21 +11,17 @@ dataset_kobe_prod:
   type: pandas.ParquetDataset
   filepath: data/01_raw/dataset_kobe_prod.parquet
 
-kobe_intermediate_drop_columns:
+data_filtered:
   type: pandas.ParquetDataset
-  filepath: data/02_intermediate/kobe_intermediate_drop_columns.parquet
+  filepath: data/02_intermediate/data_filtered.parquet
   
-kobe_intermediate_shot_made_flag_drop_na:
-  type: pandas.ParquetDataset
-  filepath: data/02_intermediate/kobe_intermediate_shot_made_flag_drop_na.parquet
-
 base_train:
   type: pandas.ParquetDataset
-  filepath: data/04_intermediate/base_train.parquet
+  filepath: data/04_feature/base_train.parquet
 
 base_test:
   type: pandas.ParquetDataset
-  filepath: data/04_intermediate/base_test.parquet
+  filepath: data/04_feature/base_test.parquet
 
 trained_model_1:
   type: pickle.PickleDataset

@@ -10,11 +10,8 @@ from sklearn.tree import DecisionTreeClassifier
 
 parameters = OmegaConfigLoader(conf_source=".")['parameters']
 
-def drop_columns(dataset):
+def drop_columns_drop_na(dataset):
     dataset = dataset.drop(columns=['action_type','combined_shot_type','game_event_id','game_id','loc_x','loc_y','season','seconds_remaining','shot_type','shot_zone_area','shot_zone_basic','shot_zone_range','team_id','team_name','game_date','matchup','opponent','shot_id'])
-    return dataset
-
-def drop_na(dataset):
     dataset = dataset.dropna()
     return dataset
 

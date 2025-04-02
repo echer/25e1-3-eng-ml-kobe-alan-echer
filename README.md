@@ -100,6 +100,13 @@ To automatically strip out all output cell contents before committing to `git`, 
 
 [Further information about building project documentation and packaging your project](https://docs.kedro.org/en/stable/tutorial/package_a_project.html)
 
+## Trabalho Engenharia de Machine Learning - Alan Echer ##
+
+# Apontar os artefatos criados e sua composição detalhada #
+# Se for dataset é importante falar as colunas descrição e os tipos de dados de cada coluna #
+# Se for modelo descrever o modelo #
+# Descrever a separacao de dados treino e teste #
+
 diagrama: https://excalidraw.com/#room=cd3f01d539bfa6994444,bzKX0k0Hkq-9AGS60N83-Q
 
 O aluno categorizou corretamente os dados?	
