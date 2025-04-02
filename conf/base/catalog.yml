@@ -23,10 +23,10 @@ base_test:
   type: pandas.ParquetDataset
   filepath: data/05_model_input/base_test.parquet
 
-trained_model_1:
+trained_lr_model:
   type: pickle.PickleDataset
-  filepath: data/06_models/trained_model_1.pickle
+  filepath: data/06_models/trained_lr_model.pickle
 
-trained_model_2:
+trained_best_model:
   type: pickle.PickleDataset
-  filepath: data/06_models/trained_model_2.pickle
+  filepath: data/06_models/trained_best_model.pickle

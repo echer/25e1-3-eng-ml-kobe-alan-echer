@@ -13,8 +13,8 @@ parameters = OmegaConfigLoader(conf_source=".")['parameters']
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline([
         node(
-            nodes.train_model,
+            nodes.train_models,
             inputs=['base_train'],
-            outputs=['trained_model_1', 'trained_model_2'],
+            outputs=['trained_best_model','trained_lr_model'],
         ),
     ])
