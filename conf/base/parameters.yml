@@ -3,5 +3,5 @@ y_column: 'shot_made_flag'
 is_production: False
 session_id: 2742
 mflow_experiment_name: 'kobe_pycarret'
-tune_n_iter: 100
+tune_n_iter: 10
 tune_target_metric: 'F1'

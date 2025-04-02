@@ -32,6 +32,7 @@ def train_lr_model(dataset):
         n_iter=parameters['tune_n_iter'],
         search_library='scikit-optimize',
     )
+    experiment.plot_model(model, plot='auc', save='data/08_reporting/lr_model')
     return model
 
 def train_best_model(dataset):
@@ -50,4 +51,5 @@ def train_best_model(dataset):
         n_iter=parameters['tune_n_iter'],
         search_library='scikit-optimize',
     )
+    experiment.plot_model(model, plot='auc', save='data/08_reporting/best_model')
     return model
