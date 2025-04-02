@@ -4,13 +4,19 @@ generated using Kedro 0.19.12
 """
 
 from pycaret.classification import *
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
 from kedro.config import OmegaConfigLoader
 
 parameters = OmegaConfigLoader(conf_source=".")['parameters']
 
-def train_model(dataset):
+# These models are trained together bacause kedro run nodes in paralel
+# and while one experiment are runing we cannot run another one with same id
+# causing the error on mlflow: 
+# MlflowException: Cannot start run with ID x
+# because active run ID does not match environment run
+def train_models(dataset):
+    return train_best_model(dataset), train_lr_model(dataset)
+
+def train_lr_model(dataset):
     experiment = ClassificationExperiment()
     experiment.setup(
         data=dataset,
@@ -19,23 +25,29 @@ def train_model(dataset):
         experiment_name=parameters['mflow_experiment_name'], 
         session_id=parameters['session_id'],
         log_plots=True,
-        #log_profile=True,
-        #log_data=True,
-        #normalize=True,
-        #normalize_method='robust',
-        #polynomial_features=True,
-        #feature_selection=True,
-        #remove_multicollinearity=True,
-        #pca=True,
     )
-    best = experiment.compare_models(n_select=15)
-    model_1 = None
-    model_2 = None
+    model = experiment.tune_model(
+        experiment.create_model('lr'),
+        optimize=parameters['tune_target_metric'],
+        n_iter=parameters['tune_n_iter'],
+        search_library='scikit-optimize',
+    )
+    return model
 
-    for model in best:
-        if(isinstance(model, LogisticRegression)):
-            model_1 = model
-        if(isinstance(model, DecisionTreeClassifier)):
-            model_2 = model
-
-    return model_1, model_2
+def train_best_model(dataset):
+    experiment = ClassificationExperiment()
+    experiment.setup(
+        data=dataset,
+        target=parameters['y_column'],
+        log_experiment='mlflow', 
+        experiment_name=parameters['mflow_experiment_name'], 
+        session_id=parameters['session_id'],
+        log_plots=True,
+    )
+    model = experiment.tune_model(
+        experiment.compare_models(),
+        optimize=parameters['tune_target_metric'],
+        n_iter=parameters['tune_n_iter'],
+        search_library='scikit-optimize',
+    )
+    return model
