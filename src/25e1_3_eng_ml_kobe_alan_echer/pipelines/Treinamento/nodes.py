@@ -17,7 +17,17 @@ def train_model(dataset):
         target=parameters['y_column'],
         log_experiment='mlflow', 
         experiment_name=parameters['mflow_experiment_name'], 
-        session_id=parameters['session_id'])
+        session_id=parameters['session_id'],
+        log_plots=True,
+        #log_profile=True,
+        #log_data=True,
+        #normalize=True,
+        #normalize_method='robust',
+        #polynomial_features=True,
+        #feature_selection=True,
+        #remove_multicollinearity=True,
+        #pca=True,
+    )
     best = experiment.compare_models(n_select=15)
     model_1 = None
     model_2 = None
