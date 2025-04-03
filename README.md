@@ -104,6 +104,8 @@ To automatically strip out all output cell contents before committing to `git`, 
 
 # (Link do repositorio)[https://github.com/echer/25e1-3-eng-ml-kobe-alan-echer.git] #
 
+# Comando para rodar o mlflow na pasta: mlflow ui --backend-store-uri ./mlflow_runs/#
+
 Salvar reports na pasta 8 plot
 
 # Apontar os artefatos criados e sua composição detalhada #

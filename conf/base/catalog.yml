@@ -24,9 +24,13 @@ base_test:
   filepath: data/05_model_input/base_test.parquet
 
 trained_lr_model:
-  type: pickle.PickleDataset
-  filepath: data/06_models/trained_lr_model.pickle
+  type: kedro_mlflow.io.models.MlflowModelTrackingDataset
+  flavor: mlflow.sklearn
+  save_args:
+    registered_model_name: trained_lr_model
 
 trained_best_model:
-  type: pickle.PickleDataset
-  filepath: data/06_models/trained_best_model.pickle
+  type: kedro_mlflow.io.models.MlflowModelTrackingDataset
+  flavor: mlflow.sklearn
+  save_args:
+    registered_model_name: trained_best_model

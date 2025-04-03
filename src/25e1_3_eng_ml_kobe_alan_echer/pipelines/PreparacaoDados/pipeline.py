@@ -21,10 +21,12 @@ def create_pipeline(**kwargs) -> Pipeline:
             nodes.drop_columns_drop_na,
             inputs=[getRawDataset()],
             outputs='data_filtered',
+            tags=['preprocessing']
         ),
         node(
             nodes.split_train_test,
             inputs=['data_filtered'],
             outputs=['base_train','base_test'],
+            tags=['preprocessing'],
         ),
     ])
