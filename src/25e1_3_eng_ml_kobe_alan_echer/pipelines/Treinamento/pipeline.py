@@ -15,7 +15,7 @@ def create_pipeline(**kwargs) -> Pipeline:
         node(
             nodes.train_models,
             inputs=['base_train'],
-            outputs=['trained_best_model','trained_lr_model'],
+            outputs=['trained_dt_model','trained_lr_model'],
             tags=['training'],
         ),
     ])

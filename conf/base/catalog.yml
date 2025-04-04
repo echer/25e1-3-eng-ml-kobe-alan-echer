@@ -29,8 +29,8 @@ trained_lr_model:
   save_args:
     registered_model_name: trained_lr_model
 
-trained_best_model:
+trained_dt_model:
   type: kedro_mlflow.io.models.MlflowModelTrackingDataset
   flavor: mlflow.sklearn
   save_args:
-    registered_model_name: trained_best_model
+    registered_model_name: trained_dt_model
