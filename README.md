@@ -127,12 +127,17 @@ https://excalidraw.com/#room=cd3f01d539bfa6994444,bzKX0k0Hkq-9AGS60N83-Q
 
 # 5 - Foi implementado o Pipeline 'PreparacaoDados' que utiliza os datasets da pasta raw (dataset_kobe_dev.parquet/dataset_kobe_prod.parquet), as linhas que continham dados faltantes foram removidos da base, foram removidos também algumas colunas deixando apenas as colunas seguintes na base: lat, lon, minutes_remaining, period, playoffs, shot_distance, shot_made_flag. Após o processamento dos dados o novo dataset foi salvo na pasta /05_model_input/base_train.parquet (80% da base), pois irá servir para treinar o modelo. Foram separados também 20% da base original antes do treino do modelo para servir como teste, são dados que nunca foram utilizados nem para escolher o melhor modelo para não criar nenhum tipo de viés, além das estratégias de 10 validações cruzadas realizadas para evitar esse tipo de comportamento. #
 
-Registre os parâmetros (% teste) e métricas (tamanho de cada base) no MlFlow
+* Registre os parâmetros (% teste) e métricas (tamanho de cada base) no MlFlow
 
-# 6 - Foi implementado o pipeline 'Treinamento' para treinar o modelo utilizado os dados de treino, foram treinados dois modelos através do PyCaret, o primeiro modelo foi um modelo de regressão logistica do sklearn #
+# 6 - Foi implementado o pipeline 'Treinamento' para treinar o modelo utilizado os dados de treino, foram treinados dois modelos através do PyCaret, o primeiro modelo foi um modelo de regressão logistica (lr) do sklearn, o segundo modelo foi um modelo de arvore de decisão (dt) do sklearn. Os modelos foram treinados com 100 iteracoes e utilizando a metrica F1 score para o tuning. #
 
-Registre a função custo "log loss" usando a base de teste
+* Registre a função custo "log loss" usando a base de teste
+* Registre a função custo "log loss" e F1_score para o modelo de árvore.
+* Selecione um dos dois modelos para finalização e justifique sua escolha.
 
+# 7 #
+
+# 8 #
 
 
 # Comando para rodar o mlflow na pasta: mlflow ui --backend-store-uri ./mlflow_runs/#
@@ -141,7 +146,6 @@ Registre a função custo "log loss" usando a base de teste
 
 # Comando para servir o modelo: MLFLOW_TRACKING_URI=file://$PWD/mlflow_runs mlflow models serve -m models:/trained_best_model/latest --env-manager=local --port 5001 #
 
-diagrama: https://excalidraw.com/#room=cd3f01d539bfa6994444,bzKX0k0Hkq-9AGS60N83-Q
 
 O aluno categorizou corretamente os dados?	
 
