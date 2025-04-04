@@ -104,18 +104,17 @@ To automatically strip out all output cell contents before committing to `git`, 
 
 # (Link do repositorio)[https://github.com/echer/25e1-3-eng-ml-kobe-alan-echer.git] #
 
-# Comando para rodar o mlflow na pasta: mlflow ui --backend-store-uri ./mlflow_runs/#
+# 1 - Este projeto tem o objetivo de apresentar os elementos aprendidos na aula de engenharia de machine learning, através da criação de uma solução capaz de analisar um conjunto de dados de arremesso do jogador de basquete kobe bryant, e assim treinar um modelo capaz de prever com uma determinada precisão se o arremesso que será realizado pelo kobe acertará ou não a cesta. Iremos utilizar a metodologia do framwork TDSP através da estrutura do kedro. #
 
-Salvar reports na pasta 8 plot
+# 2 - Os datasets de dev e prod foram armazenados seguindo a seguinte estrutura: ![DEV/PROD](./docs/dataset-kobe-dev-prod.png), segue abaixo o diagrama demostrando todas as etapas do projeto. ![DIAGRAMA](./docs/diagrama.png) #
 
-# Apontar os artefatos criados e sua composição detalhada #
-# Se for dataset é importante falar as colunas descrição e os tipos de dados de cada coluna #
-# Se for modelo descrever o modelo #
-# Descrever a separacao de dados treino e teste #
+https://excalidraw.com/#room=cd3f01d539bfa6994444,bzKX0k0Hkq-9AGS60N83-Q
 
-# Artefato 1 (dataset_kobe{dev/prod}.parquet) - Dataset original dev e prod guardadas na pasta data/01_raw/, o dataset contém os registros dos arremessos do kobe bryant e um indicador para saber se acertou ou não. #
+# 3 - O MLFlow ajuda nos pontos de rastreamento do experimento através da interface gráfica, deixando registrado todos os detalhes do treinamento e do modelo, ele também permite que o modelo seja servido para consumo em formato de API, permitindo também que seja consultado sua saude. O framework PyCaret e o scikit-learn permite o treino, tuning e atualização do nosso modelo baseado nos algoritmos que definimos em nossa pipeline. #
 
-# Artefato 2 (data_filtered.parquet) - Dataset com dados filtrados, foram removidos dados nulos e algumas colunas dexando apenas as colunas abaixo: 
+# 4 - Segue abaixo os artefatos criados e seu detalhe: #
+# 4.1 - Artefato 1 (dataset_kobe{dev/prod}.parquet) - Dataset original dev e prod guardadas na pasta data/01_raw/, o dataset contém os registros dos arremessos do kobe bryant e um indicador para saber se acertou ou não. #
+# 4.2 - Artefato 2 (data_filtered.parquet) - Dataset com dados filtrados, foram removidos dados nulos e algumas colunas dexando apenas as colunas a seguir: 
 - lat - Latitude do jogador kobe
 - lon - Longitude do jogador kobe
 - minutes_remaining - Minutos restantes para o término da partida
@@ -123,11 +122,24 @@ Salvar reports na pasta 8 plot
 - playoffs - Jogos de eliminatória
 - shot_distance - Distancia do arremesso
 - shot_made_flag - Indicador se fez acertou ou não o arremesso#
+# 4.3 - Artefato 3 (base_train) - Dataset contendo 80% dos dados do dataset 'data_filtered' estratificando os dados baseado na coluna target shot_made_flag, o dataset segue a mesma estrutura do artefato 2.#
+# 4.4 - Artefato 4 (base_test) - Dataset contendo 20% dos dados do dataset# 'data_filtered' estratificando os dados baseado na coluna target shot_made_flag, o dataset segue a mesma estrutura do artefato 2. #
 
-# Artefato 3 (base_train) - Dataset contendo 80% dos dados do dataset 'data_filtered' estratificando os dados baseado na coluna target shot_made_flag, o dataset segue a mesma estrutura do artefato 2.#
+# 5 - Foi implementado o Pipeline 'PreparacaoDados' que utiliza os datasets da pasta raw (dataset_kobe_dev.parquet/dataset_kobe_prod.parquet), as linhas que continham dados faltantes foram removidos da base, foram removidos também algumas colunas deixando apenas as colunas seguintes na base: lat, lon, minutes_remaining, period, playoffs, shot_distance, shot_made_flag. Após o processamento dos dados o novo dataset foi salvo na pasta /05_model_input/base_train.parquet (80% da base), pois irá servir para treinar o modelo. Foram separados também 20% da base original antes do treino do modelo para servir como teste, são dados que nunca foram utilizados nem para escolher o melhor modelo para não criar nenhum tipo de viés, além das estratégias de 10 validações cruzadas realizadas para evitar esse tipo de comportamento. #
 
-# Artefato 4 (base_test) - Dataset contendo 80% dos dados do dataset# 'data_filtered' estratificando os dados baseado na coluna target shot_made_flag, o dataset segue a mesma estrutura do artefato 2. #
+Registre os parâmetros (% teste) e métricas (tamanho de cada base) no MlFlow
 
+# 6 - Foi implementado o pipeline 'Treinamento' para treinar o modelo utilizado os dados de treino, foram treinados dois modelos através do PyCaret, o primeiro modelo foi um modelo de regressão logistica do sklearn #
+
+Registre a função custo "log loss" usando a base de teste
+
+
+
+# Comando para rodar o mlflow na pasta: mlflow ui --backend-store-uri ./mlflow_runs/#
+
+# Comando para executar o mflow web: mlflow ui --backend-store-uri ./mlflow_runs #
+
+# Comando para servir o modelo: MLFLOW_TRACKING_URI=file://$PWD/mlflow_runs mlflow models serve -m models:/trained_best_model/latest --env-manager=local --port 5001 #
 
 diagrama: https://excalidraw.com/#room=cd3f01d539bfa6994444,bzKX0k0Hkq-9AGS60N83-Q
 
@@ -139,7 +151,7 @@ O aluno aplicou o modelo em produção (servindo como API ou como solução emba
 
 O aluno indicou se o modelo é aderente a nova base de dados?
 
-O aluno criou um repositório git com a estrutura de projeto baseado no Framework TDSP da Microsoft?	
+# O aluno criou um repositório git com a estrutura de projeto baseado no Framework TDSP da Microsoft? #
 
 O aluno criou um diagrama que mostra todas as etapas necessárias para a criação de modelos?	
 
@@ -167,7 +179,7 @@ O aluno criou arquivos para cada fase do processamento e os armazenou nas pastas
 
 # OK - O aluno separou em duas bases, uma para treino e outra para teste #	
 
-# OK - O aluno criou um pipeline chamado "Treinamento" no MlFlow?	#
+# OK - O aluno criou um pipeline chamado "Treinamento" no MlFlow? #
 
 O aluno identificou a diferença entre a base de desenvolvimento e produção?	
 

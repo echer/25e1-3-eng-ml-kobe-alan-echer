@@ -14,7 +14,7 @@ parameters = OmegaConfigLoader(conf_source=".")['parameters']
 # MlflowException: Cannot start run with ID x
 # because active run ID does not match environment run
 def train_models(dataset):
-    return train_best_model(dataset), train_lr_model(dataset)
+    return train_dt_model(dataset), train_lr_model(dataset)
 
 def train_lr_model(dataset):
     experiment = ClassificationExperiment()
@@ -35,7 +35,7 @@ def train_lr_model(dataset):
     experiment.plot_model(model, plot='auc', save='data/08_reporting/lr_model')
     return model
 
-def train_best_model(dataset):
+def train_dt_model(dataset):
     experiment = ClassificationExperiment()
     experiment.setup(
         data=dataset,
@@ -46,10 +46,10 @@ def train_best_model(dataset):
         log_plots=True,
     )
     model = experiment.tune_model(
-        experiment.compare_models(),
+        experiment.create_model('dt'),
         optimize=parameters['tune_target_metric'],
         n_iter=parameters['tune_n_iter'],
         search_library='scikit-optimize',
     )
-    experiment.plot_model(model, plot='auc', save='data/08_reporting/best_model')
+    experiment.plot_model(model, plot='auc', save='data/08_reporting/dt_model')
     return model
