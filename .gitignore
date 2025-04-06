@@ -162,6 +162,9 @@ venv.bak/
 mlruns/*
 
 notebooks/mlruns/*
+notebooks/*.pkl
+notebooks/*.log
+notebooks/catboost_info/*
 
 catboost_info/*
 
