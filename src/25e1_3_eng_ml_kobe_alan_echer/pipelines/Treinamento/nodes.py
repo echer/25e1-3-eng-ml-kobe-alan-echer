@@ -5,6 +5,7 @@ generated using Kedro 0.19.12
 
 from pycaret.classification import *
 from kedro.config import OmegaConfigLoader
+from sklearn.metrics import log_loss
 
 parameters = OmegaConfigLoader(conf_source=".")['parameters']
 
@@ -26,6 +27,7 @@ def train_lr_model(dataset):
         session_id=parameters['session_id'],
         log_plots=True,
     )
+    experiment.add_metric('log_loss', 'Log Loss', log_loss, greater_is_better = False)
     model = experiment.tune_model(
         experiment.create_model('lr'),
         optimize=parameters['tune_target_metric'],
@@ -45,6 +47,7 @@ def train_dt_model(dataset):
         session_id=parameters['session_id'],
         log_plots=True,
     )
+    experiment.add_metric('log_loss', 'Log Loss', log_loss, greater_is_better = False)
     model = experiment.tune_model(
         experiment.create_model('dt'),
         optimize=parameters['tune_target_metric'],

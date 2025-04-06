@@ -7,3 +7,4 @@ kedro-datasets
 pycaret[models,mlops,tuners]
 scikit-optimize
 kedro-mlflow
+streamlit
