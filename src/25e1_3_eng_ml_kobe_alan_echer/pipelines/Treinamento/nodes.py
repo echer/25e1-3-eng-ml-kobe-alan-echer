@@ -5,7 +5,7 @@ generated using Kedro 0.19.12
 
 from pycaret.classification import *
 from kedro.config import OmegaConfigLoader
-from sklearn.metrics import log_loss
+from sklearn.metrics import log_loss, f1_score
 
 parameters = OmegaConfigLoader(conf_source=".")['parameters']
 
@@ -48,6 +48,7 @@ def train_dt_model(dataset):
         log_plots=True,
     )
     experiment.add_metric('log_loss', 'Log Loss', log_loss, greater_is_better = False)
+    experiment.add_metric('f1_score', 'F1_Score', f1_score, greater_is_better = True)
     model = experiment.tune_model(
         experiment.create_model('dt'),
         optimize=parameters['tune_target_metric'],

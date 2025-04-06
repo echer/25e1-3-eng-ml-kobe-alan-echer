@@ -6,6 +6,24 @@
 
 ***
 
+##### 1 - Executando a preparacao dos dados: kedro run --tags=preprocessing
+
+##### 2 - Executando o treinamento dos modelos: kedro run --tags=training
+
+##### 3 - Executando o MLFlow: mlflow serve
+
+![MLFLOW](./docs/mlflow.png)
+
+##### 4 - Servindo o modelo Decision Tree: mlflow models serve -m models:/trained_dt_model/latest --env-manager=local --port 5001
+
+##### 5 - Servindo o modelo Logistic Regression: mlflow models serve -m models:/trained_lr_model/latest --env-manager=local --port 5002
+
+##### 6 - Executando o streamlit: streamlit run ./streamlit/main.py
+
+![STREAMLIT](./docs/streamlit.png)
+
+***
+
 1. Este projeto tem o objetivo de apresentar os elementos aprendidos na aula de engenharia de machine learning, através da criação de uma solução capaz de analisar um conjunto de dados de arremesso do jogador de basquete kobe bryant, e assim treinar um modelo capaz de prever com uma determinada precisão se o arremesso que será realizado pelo kobe acertará ou não a cesta. Iremos utilizar a metodologia do framwork TDSP através da estrutura do kedro.
 
 ***
@@ -45,59 +63,21 @@ https://excalidraw.com/#room=cd3f01d539bfa6994444,bzKX0k0Hkq-9AGS60N83-Q
 
 6. Foi implementado o pipeline 'Treinamento' para treinar o modelo utilizado os dados de treino, foram treinados dois modelos através do PyCaret, o primeiro modelo foi um modelo de regressão logistica (lr) do sklearn, o segundo modelo foi um modelo de arvore de decisão (dt) do sklearn. Os modelos foram treinados com 100 iteracoes e utilizando a metrica F1 score para o tuning. 
 
-***Registre a função custo "log loss" usando a base de teste***
-***Registre a função custo "log loss" e F1_score para o modelo de árvore.***
 ***Selecione um dos dois modelos para finalização e justifique sua escolha.***
 
 7.
 
 8.
 
-
-Comando para rodar o mlflow na pasta: mlflow ui --backend-store-uri ./mlflow_runs/
-
-Comando para executar o mflow web: mlflow ui --backend-store-uri ./mlflow_runs
-
-Comando para servir o modelo: MLFLOW_TRACKING_URI=file://$PWD/mlflow_runs mlflow models serve -m models:/trained_best_model/latest --env-manager=local --port 5001
-
-
 O aluno categorizou corretamente os dados?	
-
-OK - O aluno integrou a leitura dos dados corretamente à sua solução?
 
 O aluno aplicou o modelo em produção (servindo como API ou como solução embarcada)?	
 
-O aluno indicou se o modelo é aderente a nova base de dados?
-
-OK - O aluno criou um repositório git com a estrutura de projeto baseado no Framework TDSP da Microsoft?
-
-O aluno criou um diagrama que mostra todas as etapas necessárias para a criação de modelos?	
-
-OK - O aluno treinou um modelo de regressão usando PyCaret e MLflow?
-
-O aluno calculou o Log Loss para o modelo de regressão e registrou no mlflow?	
-
-OK - O aluno treinou um modelo de árvore de decisao usando PyCaret e MLflow?
-
-O aluno calculou o Log Loss e F1 Score para o modelo de árvore de decisão e registrou no mlflow?	
-
-O aluno indicou o objetivo e descreveu detalhadamente cada artefato criado no projeto?	
-
-O aluno cobriu todos os artefatos do diagrama proposto?	
+O aluno indicou se o modelo é aderente a nova base de dados?	
 
 O aluno usou o MLFlow para registrar a rodada "Preparação de Dados" com as métricas e argumentos relevantes?	
 
-O aluno removeu os dados faltantes da base?	
-
-O aluno selecionou as colunas indicadas para criar o modelo?	
-
 O aluno indicou quais as dimensões para a base preprocessada?	
-
-O aluno criou arquivos para cada fase do processamento e os armazenou nas pastas indicadas?	
-
-OK - O aluno separou em duas bases, uma para treino e outra para teste
-
-OK - O aluno criou um pipeline chamado "Treinamento" no MlFlow?
 
 O aluno identificou a diferença entre a base de desenvolvimento e produção?	
 
