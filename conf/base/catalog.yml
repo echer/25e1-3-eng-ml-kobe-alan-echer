@@ -11,26 +11,44 @@ dataset_kobe_prod:
   type: pandas.ParquetDataset
   filepath: data/01_raw/dataset_kobe_prod.parquet
 
-data_filtered:
+data_filtered_dev:
   type: pandas.ParquetDataset
-  filepath: data/04_feature/data_filtered.parquet
+  filepath: data/04_feature/data_filtered_dev.parquet
   
-base_train:
+data_filtered_prod:
   type: pandas.ParquetDataset
-  filepath: data/05_model_input/base_train.parquet
+  filepath: data/04_feature/data_filtered_prod.parquet
 
-base_test:
+base_train_dev:
   type: pandas.ParquetDataset
-  filepath: data/05_model_input/base_test.parquet
+  filepath: data/05_model_input/base_train_dev.parquet
 
-trained_lr_model:
+base_train_prod:
+  type: pandas.ParquetDataset
+  filepath: data/05_model_input/base_train_prod.parquet
+
+base_test_dev:
+  type: pandas.ParquetDataset
+  filepath: data/05_model_input/base_test_dev.parquet
+
+base_test_prod:
+  type: pandas.ParquetDataset
+  filepath: data/05_model_input/base_test_prod.parquet
+
+trained_lr_model_dev:
   type: kedro_mlflow.io.models.MlflowModelTrackingDataset
   flavor: mlflow.sklearn
   save_args:
-    registered_model_name: trained_lr_model
+    registered_model_name: trained_lr_model_dev
 
-trained_dt_model:
+trained_lr_model_prod:
   type: kedro_mlflow.io.models.MlflowModelTrackingDataset
   flavor: mlflow.sklearn
   save_args:
-    registered_model_name: trained_dt_model
+    registered_model_name: trained_lr_model_prod
+
+trained_dt_model_prod:
+  type: kedro_mlflow.io.models.MlflowModelTrackingDataset
+  flavor: mlflow.sklearn
+  save_args:
+    registered_model_name: trained_dt_model_prod

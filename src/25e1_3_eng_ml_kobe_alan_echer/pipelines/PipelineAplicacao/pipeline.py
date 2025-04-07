@@ -1,5 +1,5 @@
 """
-This is a boilerplate pipeline 'Treinamento'
+This is a boilerplate pipeline 'PipelineAplicacao'
 generated using Kedro 0.19.12
 """
 
@@ -10,8 +10,8 @@ def create_pipeline(**kwargs) -> Pipeline:
     return pipeline([
         node(
             nodes.train_models,
-            inputs=['base_train_dev'],
-            outputs=['trained_dt_model_dev','trained_lr_model_dev'],
-            tags=['training_dev'],
-        ),
+            inputs=['base_train_prod'],
+            outputs=['trained_dt_model_prod','trained_lr_model_prod'],
+            tags=['training_prod'],
+        )
     ])

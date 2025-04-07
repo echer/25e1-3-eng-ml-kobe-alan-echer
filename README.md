@@ -8,17 +8,19 @@
 
 ##### 1 - Executando a preparacao dos dados: kedro run --tags=preprocessing
 
-##### 2 - Executando o treinamento dos modelos: kedro run --tags=training
+##### 2 - Executando o treinamento dev dos modelos: kedro run --tags=training_dev
 
-##### 3 - Executando o MLFlow: mlflow serve
+##### 3 - Executando o treinamento dev dos modelos: kedro run --tags=training_prod
+
+##### 4 - Executando o MLFlow: mlflow serve
 
 ![MLFLOW](./docs/mlflow.png)
 
-##### 4 - Servindo o modelo Decision Tree: mlflow models serve -m models:/trained_dt_model/latest --env-manager=local --port 5001
+##### 5 - Servindo o modelo Decision Tree: mlflow models serve -m models:/trained_dt_model_prod/latest --env-manager=local --port 5001
 
-##### 5 - Servindo o modelo Logistic Regression: mlflow models serve -m models:/trained_lr_model/latest --env-manager=local --port 5002
+##### 6 - Servindo o modelo Logistic Regression: mlflow models serve -m models:/trained_lr_model_prod/latest --env-manager=local --port 5002
 
-##### 6 - Executando o streamlit: streamlit run ./streamlit/main.py
+##### 7 - Executando o streamlit: streamlit run ./streamlit/main.py
 
 ![STREAMLIT](./docs/streamlit.png)
 
@@ -65,9 +67,12 @@ https://excalidraw.com/#room=cd3f01d539bfa6994444,bzKX0k0Hkq-9AGS60N83-Q
 
 ***Selecione um dos dois modelos para finalização e justifique sua escolha.***
 
-7.
+7. Registre o modelo de classificação e o sirva através do MLFlow (ou como uma API local, ou embarcando o modelo na aplicação). Desenvolva um pipeline de aplicação (aplicacao.py) para carregar a base de produção (/data/raw/dataset_kobe_prod.parquet) e aplicar o modelo. Nomeie a rodada (run) do mlflow como “PipelineAplicacao” e publique, tanto uma tabela com os resultados obtidos (artefato como .parquet), quanto log as métricas do novo log loss e f1_score do modelo.
+a. O modelo é aderente a essa nova base? O que mudou entre uma base e outra? Justifique.
+b. Descreva como podemos monitorar a saúde do modelo no cenário com e sem a disponibilidade da variável resposta para o modelo em operação.
+c. Descreva as estratégias reativa e preditiva de retreinamento para o modelo em operação.
 
-8.
+8. Implemente um dashboard de monitoramento da operação usando Streamlit.
 
 O aluno categorizou corretamente os dados?	
 

@@ -1,7 +1,8 @@
 """
-This is a boilerplate pipeline 'Treinamento'
+This is a boilerplate pipeline 'PipelineAplicacao'
 generated using Kedro 0.19.12
 """
+
 
 from pycaret.classification import *
 from kedro.config import OmegaConfigLoader
@@ -34,7 +35,7 @@ def train_lr_model(dataset):
         n_iter=parameters['tune_n_iter'],
         search_library='scikit-optimize',
     )
-    experiment.plot_model(model, plot='auc', save='data/08_reporting/lr_model_dev')
+    experiment.plot_model(model, plot='auc', save='data/08_reporting/lr_model_prod')
     return model
 
 def train_dt_model(dataset):
@@ -55,5 +56,5 @@ def train_dt_model(dataset):
         n_iter=parameters['tune_n_iter'],
         search_library='scikit-optimize',
     )
-    experiment.plot_model(model, plot='auc', save='data/08_reporting/dt_model_dev')
+    experiment.plot_model(model, plot='auc', save='data/08_reporting/dt_model_prod')
     return model
