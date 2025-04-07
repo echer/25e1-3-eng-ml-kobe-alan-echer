@@ -14,4 +14,16 @@ def create_pipeline(**kwargs) -> Pipeline:
             outputs=['trained_dt_model_dev','trained_lr_model_dev'],
             tags=['training_dev'],
         ),
+        node(
+            nodes.get_metrics_dt_dev,
+            inputs=['base_train_dev'],
+            outputs='dt_metrics_dev',
+            tags=['metrics']
+        ),
+        node(
+            nodes.get_metrics_lr_dev,
+            inputs=['base_train_dev'],
+            outputs='lr_metrics_dev',
+            tags=['metrics']
+        ),
     ])

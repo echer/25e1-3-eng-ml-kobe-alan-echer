@@ -7,6 +7,7 @@ generated using Kedro 0.19.12
 from pycaret.classification import *
 from kedro.config import OmegaConfigLoader
 from sklearn.metrics import log_loss, f1_score
+import mlflow.sklearn
 
 parameters = OmegaConfigLoader(conf_source=".")['parameters']
 
@@ -58,3 +59,29 @@ def train_dt_model(dataset):
     )
     experiment.plot_model(model, plot='auc', save='data/08_reporting/dt_model_prod')
     return model
+
+def get_metrics_lr_prod(data):
+    return get_metrics_by_type(data, 'lr', 'prod')
+
+def get_metrics_dt_prod(data):
+    return get_metrics_by_type(data, 'dt', 'prod')
+
+def get_metrics_by_type(data, type, env):
+    model_name = f"trained_{type}_model_{env}"
+    model_version = "latest"
+
+    model_uri = f"models:/{model_name}/{model_version}"
+    model = mlflow.sklearn.load_model(model_uri)
+
+    new_data = data.drop(columns=[parameters['y_column']])
+
+    y_data = model.predict_proba(new_data)
+
+    metrics_dict = {
+        f'log_loss_{type}_{env}':log_loss(data[parameters['y_column']],y_data[:,1])
+    } 
+
+    return {
+        key:{'value':val,'step':1}
+        for(key,val) in metrics_dict.items()
+    }

@@ -47,8 +47,26 @@ trained_lr_model_prod:
   save_args:
     registered_model_name: trained_lr_model_prod
 
+trained_dt_model_dev:
+  type: kedro_mlflow.io.models.MlflowModelTrackingDataset
+  flavor: mlflow.sklearn
+  save_args:
+    registered_model_name: trained_dt_model_dev
+
 trained_dt_model_prod:
   type: kedro_mlflow.io.models.MlflowModelTrackingDataset
   flavor: mlflow.sklearn
   save_args:
     registered_model_name: trained_dt_model_prod
+
+lr_metrics_dev:
+  type: kedro_mlflow.io.metrics.MlflowMetricsHistoryDataset
+
+dt_metrics_dev:
+  type: kedro_mlflow.io.metrics.MlflowMetricsHistoryDataset
+
+lr_metrics_prod:
+  type: kedro_mlflow.io.metrics.MlflowMetricsHistoryDataset
+
+dt_metrics_prod:
+  type: kedro_mlflow.io.metrics.MlflowMetricsHistoryDataset

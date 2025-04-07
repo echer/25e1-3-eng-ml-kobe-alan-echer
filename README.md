@@ -6,13 +6,16 @@
 
 ***
 
-##### 1 - Executando a preparacao dos dados: kedro run --tags=preprocessing
+##### Instruções para execução:
 
-##### 2 - Executando o treinamento dev dos modelos: kedro run --tags=training_dev
+1. Executando a preparacao dos dados: kedro run --tags=preprocessing
+2. Executando o registro das metricas no mlflow: kedro run --tags=metrics
+3. Executando o treinamento dev dos modelos: kedro run --tags=training_dev
+4. Executando o treinamento dev dos modelos: kedro run --tags=training_prod
 
-##### 3 - Executando o treinamento dev dos modelos: kedro run --tags=training_prod
 
-##### 4 - Executando o MLFlow: mlflow serve
+
+##### 4 - Executando o MLFlow: mlflow server
 
 ![MLFLOW](./docs/mlflow.png)
 
