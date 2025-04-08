@@ -12,20 +12,13 @@
 2. Executando o registro das metricas no mlflow: kedro run --tags=metrics
 3. Executando o treinamento dev dos modelos: kedro run --tags=training_dev
 4. Executando o treinamento dev dos modelos: kedro run --tags=training_prod
-
-
-
-##### 4 - Executando o MLFlow: mlflow server
+5. Executando o MLFlow: mlflow server
 
 ![MLFLOW](./docs/mlflow.png)
 
-##### 5 - Servindo o modelo Decision Tree: mlflow models serve -m models:/trained_dt_model_prod/latest --env-manager=local --port 5001
-
-##### 6 - Servindo o modelo Logistic Regression: mlflow models serve -m models:/trained_lr_model_prod/latest --env-manager=local --port 5002
-
-##### 7 - Executando o streamlit: streamlit run ./streamlit/main.py
-
-![STREAMLIT](./docs/streamlit.png)
+6. Servindo o modelo Decision Tree: mlflow models serve -m models:/trained_dt_model_prod/latest --env-manager=local --port 5001
+7. Servindo o modelo Logistic Regression: mlflow models serve -m models:/trained_lr_model_prod/latest --env-manager=local --port 5002
+8. Executando o streamlit: streamlit run ./streamlit/main.py
 
 ***
 
@@ -60,9 +53,9 @@ https://excalidraw.com/#room=cd3f01d539bfa6994444,bzKX0k0Hkq-9AGS60N83-Q
 
 ***
 
-5. Foi implementado o Pipeline 'PreparacaoDados' que utiliza os datasets da pasta raw (dataset_kobe_dev.parquet/dataset_kobe_prod.parquet), as linhas que continham dados faltantes foram removidos da base, foram removidos também algumas colunas deixando apenas as colunas seguintes na base: lat, lon, minutes_remaining, period, playoffs, shot_distance, shot_made_flag. Após o processamento dos dados o novo dataset foi salvo na pasta /05_model_input/base_train.parquet (80% da base), pois irá servir para treinar o modelo. Foram separados também 20% da base original antes do treino do modelo para servir como teste, são dados que nunca foram utilizados nem para escolher o melhor modelo para não criar nenhum tipo de viés, além das estratégias de 10 validações cruzadas realizadas para evitar esse tipo de comportamento.
+5. Foi implementado o Pipeline 'PreparacaoDados' que utiliza os datasets da pasta raw (dataset_kobe_dev.parquet/dataset_kobe_prod.parquet), as linhas que continham dados faltantes foram removidos da base, foram removidos também algumas colunas deixando apenas as colunas seguintes na base: lat, lon, minutes_remaining, period, playoffs, shot_distance, shot_made_flag. Após o processamento dos dados o novo dataset foi salvo na pasta /05_model_input/base_train.parquet (80% da base), pois irá servir para treinar o modelo. Foram separados também 20% da base original antes do treino do modelo para servir como teste, são dados que nunca foram utilizados nem para escolher o melhor modelo para não criar nenhum tipo de viés, além das estratégias de 10 validações cruzadas realizadas para evitar esse tipo de comportamento. Foram registradas as metricas para a base de teste e treino no dataset de dev e prod conforme imagem abaixo:
 
-***Registre os parâmetros (% teste) e métricas (tamanho de cada base) no MlFlow***
+![METRICAS](./docs/metricas.png)
 
 ***
 
@@ -77,9 +70,9 @@ c. Descreva as estratégias reativa e preditiva de retreinamento para o modelo e
 
 8. Implemente um dashboard de monitoramento da operação usando Streamlit.
 
-O aluno categorizou corretamente os dados?	
+![STREAMLIT](./docs/streamlit.png)
 
-O aluno aplicou o modelo em produção (servindo como API ou como solução embarcada)?	
+O aluno categorizou corretamente os dados?	
 
 O aluno indicou se o modelo é aderente a nova base de dados?	
 

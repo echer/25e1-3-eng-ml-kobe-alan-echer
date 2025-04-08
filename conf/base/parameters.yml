@@ -2,5 +2,5 @@ train_test_split_ratio: 0.20
 y_column: 'shot_made_flag'
 session_id: 2742
 mflow_experiment_name: 'kobe_pycarret'
-tune_n_iter: 10
+tune_n_iter: 100
 tune_target_metric: 'F1'

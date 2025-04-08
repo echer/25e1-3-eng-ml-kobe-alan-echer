@@ -24,13 +24,13 @@ def create_pipeline(**kwargs) -> Pipeline:
             tags=['preprocessing']
         ),
         node(
-            nodes.split_train_test,
+            nodes.split_train_test_dev,
             inputs=['data_filtered_dev'],
             outputs=['base_train_dev','base_test_dev'],
             tags=['preprocessing'],
         ),
         node(
-            nodes.split_train_test,
+            nodes.split_train_test_prod,
             inputs=['data_filtered_prod'],
             outputs=['base_train_prod','base_test_prod'],
             tags=['preprocessing'],

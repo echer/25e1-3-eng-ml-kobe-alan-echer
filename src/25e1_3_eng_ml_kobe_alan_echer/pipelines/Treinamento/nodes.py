@@ -77,7 +77,8 @@ def get_metrics_by_type(data, type, env):
     y_data = model.predict_proba(new_data)
 
     metrics_dict = {
-        f'log_loss_{type}_{env}':log_loss(data[parameters['y_column']],y_data[:,1])
+        f'log_loss_{type}_{env}':log_loss(data[parameters['y_column']],y_data[:,1]),
+        f'f1_score_{type}_{env}':f1_score(data[parameters['y_column']],y_data[:,1]),
     } 
 
     return {
