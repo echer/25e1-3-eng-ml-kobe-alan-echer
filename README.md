@@ -57,7 +57,6 @@ https://excalidraw.com/#room=cd3f01d539bfa6994444,bzKX0k0Hkq-9AGS60N83-Q
     9. Artefato 9 (lr_model_{dev/prod}/AUC.png) Curva ROC salva na pasta 08_reporting com a curva da regressão logistica.
     10. Artefato 10 (dt_model_{dev/prod}/AUC.png) Curva ROC salva na pasta 08_reporting com a curva da arvore de decisão.
 
-
 ***
 
 5. Foi implementado o Pipeline 'PreparacaoDados' que utiliza os datasets da pasta raw (dataset_kobe_dev.parquet/dataset_kobe_prod.parquet), as linhas que continham dados faltantes foram removidos da base, foram removidos também algumas colunas deixando apenas as colunas seguintes na base: lat, lon, minutes_remaining, period, playoffs, shot_distance, shot_made_flag. Após o processamento dos dados o novo dataset foi salvo na pasta /05_model_input/base_train.parquet (80% da base), pois irá servir para treinar o modelo. Foram separados também 20% da base original antes do treino do modelo para servir como teste, são dados que nunca foram utilizados nem para escolher o melhor modelo para não criar nenhum tipo de viés, além das estratégias de 10 validações cruzadas realizadas para evitar esse tipo de comportamento. Foram registradas as metricas para a base de teste e treino no dataset de dev e prod conforme imagem abaixo:

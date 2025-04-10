@@ -3,9 +3,7 @@ import requests
 
 def call_inference(port, data):
     send_data = {
-        'inputs':[
-            list(data.values())
-        ],
+        'inputs':data,
     }
     
     resp = requests.post(
@@ -50,6 +48,8 @@ if(modelo == 'Arvore de Decisão'):
 elif(modelo == 'Regressão Logistica'):
     port = '5002'
 
-result = call_inference(port, data)
+result = call_inference(port, [
+            list(data.values())
+        ])
 
 st.write('Acertou? ', {'Sim!' if(result) else 'Não!'})
