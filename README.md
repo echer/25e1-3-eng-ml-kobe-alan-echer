@@ -39,17 +39,24 @@ https://excalidraw.com/#room=cd3f01d539bfa6994444,bzKX0k0Hkq-9AGS60N83-Q
 ***
 
 4. Segue abaixo os artefatos criados e seu detalhe:
-    1. Artefato 1 (dataset_kobe{dev/prod}.parquet) - Dataset original dev e prod guardadas na pasta data/01_raw/, o dataset contém os registros dos arremessos do kobe bryant e um indicador para saber se acertou ou não.
-    2. Artefato 2 (data_filtered.parquet) - Dataset com dados filtrados, foram removidos dados nulos e algumas colunas dexando apenas as colunas a seguir: 
-        1. lat - Latitude do jogador kobe
-        2. lon - Longitude do jogador kobe
-        3. minutes_remaining - Minutos restantes para o término da partida
-        4. period - Periodo ou tempo da partida atual
-        5. playoffs - Jogos de eliminatória
-        6. shot_distance - Distancia do arremesso
-        7. shot_made_flag - Indicador se fez acertou ou não o arremesso
-    3. Artefato 3 (base_train) - Dataset contendo 80% dos dados do dataset 'data_filtered' estratificando os dados baseado na coluna target shot_made_flag, o dataset segue a mesma estrutura do artefato 2.
-    4. Artefato 4 (base_test) - Dataset contendo 20% dos dados do dataset 'data_filtered' estratificando os dados baseado na coluna target shot_made_flag, o dataset segue a mesma estrutura do artefato 2. **
+    1. Artefato 1 (dataset_kobe_{dev/prod}.parquet) - Dataset original dev e prod guardadas na pasta data/01_raw/, o dataset contém os registros dos arremessos do kobe bryant e um indicador para saber se acertou ou não.
+    2. Artefato 2 (data_filtered_{dev/prod}.parquet) - Dataset com dados filtrados baseado no Artefato 1, foram removidos dados nulos e algumas colunas dexando apenas as colunas a seguir: 
+        1. lat (numerico) - Latitude do jogador kobe
+        2. lon (numerico) - Longitude do jogador kobe
+        3. minutes_remaining (inteiro) - Minutos restantes para o término da partida
+        4. period (inteiro) - Periodo ou tempo da partida atual
+        5. playoffs (inteiro) - Jogos de eliminatória
+        6. shot_distance (inteiro) - Distancia do arremesso
+        7. shot_made_flag (inteiro) - Indicador se fez acertou ou não o arremesso
+    3. Artefato 3 (base_train_{dev/prod}.parquet) - Dataset contendo 80% dos dados do Artefato 2 estratificando os dados baseado na coluna target shot_made_flag, o dataset segue a mesma estrutura do artefato 2.
+    4. Artefato 4 (base_test_{dev/prod}.parquet) - Dataset contendo 20% dos dados do Artefato 2 estratificando os dados baseado na coluna target shot_made_flag, o dataset segue a mesma estrutura do artefato 2. **
+    5. Artefato 5 (trained_lr_model_{dev/prod}) - Modelo de regressão logistica treinado e tunado com os dados do Artefato 3, salvo no mlflow models.
+    6. Artefato 6 (trained_dt_model_{dev/prod}) - Modelo de arvore de decisão treinado e tunado com os dados do Artefato 3, salvo no mlflow models.
+    7. Artefato 7 (lr_metrics_{dev/prod}) - Metricas salvas no mflow do modelo de regressão logistica.
+    8. Artefato 8 (dt_metrics_{dev/prod}) - Metricas salvas no mflow do modelo de arvore de decisão.
+    9. Artefato 9 (lr_model_{dev/prod}/AUC.png) Curva ROC salva na pasta 08_reporting com a curva da regressão logistica.
+    10. Artefato 10 (dt_model_{dev/prod}/AUC.png) Curva ROC salva na pasta 08_reporting com a curva da arvore de decisão.
+
 
 ***
 

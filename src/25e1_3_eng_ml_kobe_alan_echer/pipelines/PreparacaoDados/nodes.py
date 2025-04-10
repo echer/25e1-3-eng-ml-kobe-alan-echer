@@ -11,6 +11,7 @@ parameters = OmegaConfigLoader(conf_source=".")['parameters']
 def drop_columns_drop_na(dataset):
     dataset = dataset.drop(columns=['action_type','combined_shot_type','game_event_id','game_id','loc_x','loc_y','season','seconds_remaining','shot_type','shot_zone_area','shot_zone_basic','shot_zone_range','team_id','team_name','game_date','matchup','opponent','shot_id'])
     dataset = dataset.dropna()
+    dataset = transform_shot_made_flag_to_integer(dataset)
     return dataset
 
 def split_train_test_dev(dataset):
@@ -40,3 +41,7 @@ def split_train_test_prod(dataset):
     mlflow.log_metric("Base-de-Teste-QTD-PROD", test.shape[0])
     mlflow.log_metric("Base-de-Teste-QTD-PROD", train.shape[0])
     return train, test
+
+def transform_shot_made_flag_to_integer(dataset):
+    dataset['shot_made_flag'] = dataset['shot_made_flag'].apply(lambda r: 1 if r == 1.0 else 0)
+    return dataset
