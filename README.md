@@ -65,34 +65,15 @@ https://excalidraw.com/#room=cd3f01d539bfa6994444,bzKX0k0Hkq-9AGS60N83-Q
 
 ***
 
-6. Foi implementado o pipeline 'Treinamento' para treinar o modelo utilizado os dados de treino, foram treinados dois modelos através do PyCaret, o primeiro modelo foi um modelo de regressão logistica (lr) do sklearn, o segundo modelo foi um modelo de arvore de decisão (dt) do sklearn. Os modelos foram treinados com 100 iteracoes e utilizando a metrica F1 score para o tuning. 
+6. Foi implementado o pipeline 'Treinamento' para treinar o modelo utilizado os dados de treino, foram treinados dois modelos através do PyCaret, o primeiro modelo foi um modelo de regressão logistica (lr) do sklearn, o segundo modelo foi um modelo de arvore de decisão (dt) do sklearn. Os modelos foram treinados com 100 iteracoes e utilizando a metrica F1 score para o tuning. O Modelo selecionado foi o de regressão logistica que obteve o melhor score F1 após o tuning de parametros conforme imagem abaixo:
 
-***Selecione um dos dois modelos para finalização e justifique sua escolha.***
+![MELHOR_MODELO](./docs/melhor-modelo.png)
 
-7. Registre o modelo de classificação e o sirva através do MLFlow (ou como uma API local, ou embarcando o modelo na aplicação). Desenvolva um pipeline de aplicação (aplicacao.py) para carregar a base de produção (/data/raw/dataset_kobe_prod.parquet) e aplicar o modelo. Nomeie a rodada (run) do mlflow como “PipelineAplicacao” e publique, tanto uma tabela com os resultados obtidos (artefato como .parquet), quanto log as métricas do novo log loss e f1_score do modelo.
-a. O modelo é aderente a essa nova base? O que mudou entre uma base e outra? Justifique.
-b. Descreva como podemos monitorar a saúde do modelo no cenário com e sem a disponibilidade da variável resposta para o modelo em operação.
-c. Descreva as estratégias reativa e preditiva de retreinamento para o modelo em operação.
+7. O modelo foi registrado e servido através do mlflow e na api local utilizando a base de produção, foram publicados os resultados no streamlit utilizando a base de testes e também foram registrados as metricas log_loss e f1 score do modelo no mflow. O modelo não é aderente a base de dados nova pois os dados dela nao representam os mesmos dados que foram utilizados para treinar o modelo, representam um cenário totalmente diferente o que acabou comprometendo a performance do modelo treinado com outros dados. É possível melhorar o tuning do modelo e refinar melhor os dados para melhorar a performance do modelo.
 
-8. Implemente um dashboard de monitoramento da operação usando Streamlit.
+8. Foi implementado um dashboard no streamlit utilizando os dados de teste para consumir o modelo exposto retornando se acertou ou nao o arremesso no dataset de teste.
 
 ![STREAMLIT](./docs/streamlit.png)
-
-O aluno categorizou corretamente os dados?	
-
-O aluno indicou se o modelo é aderente a nova base de dados?	
-
-O aluno usou o MLFlow para registrar a rodada "Preparação de Dados" com as métricas e argumentos relevantes?	
-
-O aluno indicou quais as dimensões para a base preprocessada?	
-
-O aluno identificou a diferença entre a base de desenvolvimento e produção?	
-
-O aluno descreveu como monitorar a saúde do modelo no cenário com e sem a disponibilidade da variável alvo?	
-
-O aluno implementou um dashboard de monitoramento da operação usando Streamlit?	
-
-O aluno descreveu as estratégias reativa e preditiva de retreinamento para o modelo em operação?	
 
 [![Powered by Kedro](https://img.shields.io/badge/powered_by-kedro-ffc900?logo=kedro)](https://kedro.org)
 
